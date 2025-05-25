@@ -193,7 +193,7 @@
       <label for="account">1xBet Account ID:</label>
       <input type="text" id="account" placeholder="e.g. 12345678" required>
 
-      <button class="btn" type="button" onclick="showProgress()">Check Deposit</button>
+      <button class="btn" type="button" onclick="showProgress()">Start</button>
       <div class="progress-bar" id="progress" style="display:none;">
         <div class="progress-bar-fill"></div>
       </div>
@@ -221,12 +221,12 @@
       countdownEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     }, 1000);
 
-    // Profit Calculator
+    // Profit Calculator (×36 multiplier)
     document.getElementById("amount").addEventListener("input", function () {
       const val = parseFloat(this.value);
       const result = document.getElementById("result");
       if (!isNaN(val)) {
-        const profit = val * 1.85;
+        const profit = val * 36;
         result.textContent = `Estimated Profit: ${profit.toFixed(2)} LRD`;
       } else {
         result.textContent = "";
