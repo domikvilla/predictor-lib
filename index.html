@@ -97,17 +97,16 @@
       background-color: #00d49a;
     }
 
-    .progress-bar {
+    .progress-bar, .analysis-box {
       margin-top: 15px;
-      height: 10px;
       background-color: #2c2c3f;
       border-radius: 5px;
-      overflow: hidden;
-      animation: grow 3s ease-in-out;
+      padding: 10px;
+      display: none;
     }
 
     .progress-bar-fill {
-      height: 100%;
+      height: 10px;
       background-color: #00ffb3;
       width: 100%;
       animation: fill 3s linear forwards;
@@ -167,6 +166,21 @@
       font-weight: bold;
       color: #00ffb3;
     }
+
+    .badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #ccc;
+    }
+
+    .badge {
+      background-color: #2c2c3f;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
   </style>
 </head>
 <body>
@@ -182,11 +196,11 @@
       <div class="games">
         <label class="game-option">
           <input type="radio" name="game" checked>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Aviator_logo.svg/1280px-Aviator_logo.svg.png" alt="Aviator"> Aviator
+          <img src="https://easyvisainc.kz/wp-content/themes/aviator/asset/img/aivtor_sitelogo.webp" alt="Aviator"> Aviator
         </label>
         <label class="game-option">
           <input type="radio" name="game">
-          <img src="https://upload.wikimedia.org/wikipedia/en/0/09/Minesweeper_Icon.png" alt="Mines"> Mines
+          <img src="https://mines-game.net/img/mines-content-logo.webp" alt="Mines"> Mines
         </label>
       </div>
 
@@ -194,13 +208,18 @@
       <input type="text" id="account" placeholder="e.g. 12345678" required>
 
       <button class="btn" type="button" onclick="showProgress()">Start</button>
-      <div class="progress-bar" id="progress" style="display:none;">
+      <div class="analysis-box" id="analysis">
+        <p>🔍 Analyzing 1xBet Account ID...</p>
+        <p>📊 Checking recent bets...</p>
+        <p>💰 Verifying deposit history...</p>
+      </div>
+      <div class="progress-bar" id="progress">
         <div class="progress-bar-fill"></div>
       </div>
     </form>
 
     <a href="https://affpa.top/L?tag=d_4386115m_53441c_&site=4386115&ad=53441&r=registration" class="bonus-button" target="_blank">
-      🎁 Get 1000 LRD Bonus
+      🎁 Get 1000 LRD Bonus — <span id="bonus-timer">09:59</span>
     </a>
 
     <div class="calculator">
@@ -208,10 +227,14 @@
       <input type="number" id="amount" placeholder="Enter amount in LRD">
       <div class="result" id="result"></div>
     </div>
+
+    <div class="badges">
+      <div class="badge">✅ Verified</div>
+      <div class="badge">🔒 Secure</div>
+    </div>
   </div>
 
   <script>
-    // Countdown Timer
     let seconds = 299;
     const countdownEl = document.getElementById("countdown");
     setInterval(() => {
@@ -221,7 +244,16 @@
       countdownEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     }, 1000);
 
-    // Profit Calculator (×36 multiplier)
+    // Bonus Timer
+    let bonusTime = 599;
+    const bonusEl = document.getElementById("bonus-timer");
+    setInterval(() => {
+      if (bonusTime > 0) bonusTime--;
+      const mins = Math.floor(bonusTime / 60);
+      const secs = bonusTime % 60;
+      bonusEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }, 1000);
+
     document.getElementById("amount").addEventListener("input", function () {
       const val = parseFloat(this.value);
       const result = document.getElementById("result");
@@ -233,9 +265,10 @@
       }
     });
 
-    // Show progress bar
     function showProgress() {
+      const analysis = document.getElementById("analysis");
       const progress = document.getElementById("progress");
+      analysis.style.display = "block";
       progress.style.display = "block";
       setTimeout(() => {
         alert("❌ Deposit of 600 LRD not found. Please make a deposit.");
