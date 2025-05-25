@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Smart Pattern Tool</title>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/337/337946.png" />
+  <title>Jeffrey Program</title>
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -30,6 +30,7 @@
     .logo {
       width: 60px;
       margin-bottom: 15px;
+      border-radius: 8px;
     }
 
     h1 {
@@ -101,18 +102,40 @@
     .telegram-btn:hover {
       background-color: #1b8ebd;
     }
+
+    .game-option {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .game-option img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+
+    .game-option label {
+      margin: 0;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="logo" class="logo" />
-    <h1>Smart Pattern Tool</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg" alt="Liberia Flag" class="logo" />
+    <h1>Jeffrey Program</h1>
 
     <label for="game">Choose your game:</label>
-    <select id="game">
-      <option value="aviator">Aviator</option>
-      <option value="mines">Mines</option>
-    </select>
+    <div class="game-option">
+      <input type="radio" id="aviator" name="game" value="aviator" checked>
+      <img src="https://example.com/aviator-icon.png" alt="Aviator Icon">
+      <label for="aviator">Aviator</label>
+    </div>
+    <div class="game-option">
+      <input type="radio" id="mines" name="game" value="mines">
+      <img src="https://example.com/mines-icon.png" alt="Mines Icon">
+      <label for="mines">Mines</label>
+    </div>
 
     <label for="accountId">1xBet Account ID:</label>
     <input type="text" id="accountId" placeholder="e.g. 12345678" />
@@ -143,7 +166,7 @@
       setTimeout(() => {
         loading.style.display = "none";
         resultText.textContent = `❌ Deposit of 600 LRD not found for ID ${accountId}`;
-      }, 2000); // имитируем задержку 2 сек
+      }, 2000);
     }
   </script>
 </body>
