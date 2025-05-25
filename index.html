@@ -4,177 +4,243 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jeffrey Program</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #121220;
-      color: #fff;
+      background-color: #0f0f1a;
+      color: white;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: flex-start;
       min-height: 100vh;
       padding: 20px;
     }
+
     .container {
-      background: #1e1e2f;
-      padding: 30px;
-      border-radius: 15px;
+      background-color: #1c1c2e;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #00ffb3;
       max-width: 400px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 0 15px rgba(0, 255, 163, 0.3);
+      animation: fadeIn 1s ease-in-out;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
     .flag {
-      width: 40px;
+      width: 60px;
+      margin-bottom: 10px;
     }
+
     h1 {
-      color: #00ff9c;
-      margin: 15px 0 25px;
+      font-size: 24px;
+      margin: 10px 0 20px;
+      color: #00ffb3;
     }
+
     label {
       display: block;
-      margin: 10px 0 5px;
+      margin: 15px 0 5px;
+      font-weight: 600;
       text-align: left;
     }
+
+    .games {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
     .game-option {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-      text-align: left;
+      gap: 10px;
     }
+
     .game-option img {
       width: 24px;
       height: 24px;
     }
+
     input[type="text"] {
       width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      background: #2c2c3c;
-      color: white;
-      margin-top: 5px;
-    }
-    button {
-      margin-top: 15px;
       padding: 12px;
-      width: 100%;
       border: none;
       border-radius: 8px;
-      background: #00ff9c;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
+      margin-top: 8px;
+      background-color: #2c2c3f;
+      color: white;
     }
-    .bonus-button {
-      margin-top: 20px;
-      background: #3498db;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .timer, .online-status {
-      margin: 15px 0;
-      font-size: 14px;
-      color: #ccc;
-    }
-    .profit-calc {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #a0ffa0;
-    }
-    .progress {
-      background-color: #333;
+
+    .btn {
+      background-color: #00ffb3;
+      color: #000;
+      padding: 14px;
+      border: none;
       border-radius: 8px;
-      overflow: hidden;
-      margin: 15px 0;
-      display: none;
+      font-weight: 700;
+      width: 100%;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
+
+    .btn:hover {
+      background-color: #00d49a;
+    }
+
     .progress-bar {
-      height: 12px;
-      width: 0%;
-      background: #00ff9c;
-      transition: width 0.3s;
+      margin-top: 15px;
+      height: 10px;
+      background-color: #2c2c3f;
+      border-radius: 5px;
+      overflow: hidden;
+      animation: grow 3s ease-in-out;
     }
-    .message {
-      display: none;
-      color: #ff6565;
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: #00ffb3;
+      width: 100%;
+      animation: fill 3s linear forwards;
+    }
+
+    @keyframes fill {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .online-status {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .timer {
+      font-size: 16px;
+      color: #ff5c5c;
+      margin: 10px 0;
+    }
+
+    .bonus-button {
+      display: block;
+      margin-top: 30px;
+      background-color: #007bff;
+      color: white;
+      padding: 12px;
+      text-decoration: none;
+      border-radius: 8px;
       font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .bonus-button:hover {
+      background-color: #005dc1;
+    }
+
+    .calculator {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .calculator input {
+      margin-top: 5px;
+      width: 100%;
+    }
+
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #00ffb3;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg" alt="Liberia" class="flag" />
+    <img src="https://flagcdn.com/w320/lr.png" alt="Liberia Flag" class="flag">
     <h1>Jeffrey Program</h1>
 
-    <div class="timer" id="timer">⏳ Limited beta access ends in: <span id="countdown">10:00</span></div>
-    <div class="online-status">🔵 37 users online now</div>
+    <div class="online-status">🔵 Online: <span id="usersOnline">87</span> users</div>
+    <div class="timer">⏳ Access closes in <span id="countdown">04:59</span></div>
 
-    <label>Choose your game:</label>
-    <div class="game-option">
-      <label><input type="radio" name="game" value="aviator" checked><img src="https://easyvisainc.kz/wp-content/themes/aviator/asset/img/aivtor_sitelogo.webp" alt="Aviator"> Aviator</label>
-    </div>
-    <div class="game-option">
-      <label><input type="radio" name="game" value="mines"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4Wpu9sILOP1dBrHdqUzESvO1SbSToztgacg&s" alt="Mines"> Mines</label>
-    </div>
+    <form>
+      <label>Choose your game:</label>
+      <div class="games">
+        <label class="game-option">
+          <input type="radio" name="game" checked>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Aviator_logo.svg/1280px-Aviator_logo.svg.png" alt="Aviator"> Aviator
+        </label>
+        <label class="game-option">
+          <input type="radio" name="game">
+          <img src="https://upload.wikimedia.org/wikipedia/en/0/09/Minesweeper_Icon.png" alt="Mines"> Mines
+        </label>
+      </div>
 
-    <label for="account">1xBet Account ID:</label>
-    <input type="text" id="account" placeholder="e.g. 12345678" />
+      <label for="account">1xBet Account ID:</label>
+      <input type="text" id="account" placeholder="e.g. 12345678" required>
 
-    <div class="profit-calc">
-      💰 If you deposit 600 LRD, you could win: <strong>≈ 5,400 LRD</strong>
-    </div>
+      <button class="btn" type="button" onclick="showProgress()">Check Deposit</button>
+      <div class="progress-bar" id="progress" style="display:none;">
+        <div class="progress-bar-fill"></div>
+      </div>
+    </form>
 
-    <button onclick="checkDeposit()">Check Deposit</button>
-
-    <div class="progress" id="progress">
-      <div class="progress-bar" id="progress-bar"></div>
-    </div>
-    <div class="message" id="message">⚠️ Deposit not found. Minimum required: 600 LRD</div>
-
-    <a href="https://affpa.top/L?tag=d_4386115m_53441c_&site=4386115&ad=53441&r=registration" target="_blank">
-      <button class="bonus-button">🎁 Get 1000 LRD Bonus</button>
+    <a href="https://affpa.top/L?tag=d_4386115m_53441c_&site=4386115&ad=53441&r=registration" class="bonus-button" target="_blank">
+      🎁 Get 1000 LRD Bonus
     </a>
+
+    <div class="calculator">
+      <label for="amount">💰 Profit Calculator:</label>
+      <input type="number" id="amount" placeholder="Enter amount in LRD">
+      <div class="result" id="result"></div>
+    </div>
   </div>
 
   <script>
-    // Countdown timer
-    let time = 600;
-    const countdown = document.getElementById('countdown');
+    // Countdown Timer
+    let seconds = 299;
+    const countdownEl = document.getElementById("countdown");
     setInterval(() => {
-      if (time > 0) time--;
-      const minutes = Math.floor(time / 60);
-      const seconds = time % 60;
-      countdown.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      if (seconds > 0) seconds--;
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      countdownEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     }, 1000);
 
-    function checkDeposit() {
-      const progress = document.getElementById('progress');
-      const bar = document.getElementById('progress-bar');
-      const msg = document.getElementById('message');
+    // Profit Calculator
+    document.getElementById("amount").addEventListener("input", function () {
+      const val = parseFloat(this.value);
+      const result = document.getElementById("result");
+      if (!isNaN(val)) {
+        const profit = val * 1.85;
+        result.textContent = `Estimated Profit: ${profit.toFixed(2)} LRD`;
+      } else {
+        result.textContent = "";
+      }
+    });
 
-      progress.style.display = 'block';
-      msg.style.display = 'none';
-      bar.style.width = '0%';
-
-      let width = 0;
-      const interval = setInterval(() => {
-        if (width >= 100) {
-          clearInterval(interval);
-          msg.style.display = 'block';
-        } else {
-          width += 2;
-          bar.style.width = width + '%';
-        }
-      }, 50);
+    // Show progress bar
+    function showProgress() {
+      const progress = document.getElementById("progress");
+      progress.style.display = "block";
+      setTimeout(() => {
+        alert("❌ Deposit of 600 LRD not found. Please make a deposit.");
+      }, 3000);
     }
   </script>
 </body>
 </html>
-
