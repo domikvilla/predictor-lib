@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Pattern Tool</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/337/337946.png" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0e0e1b;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    .container {
+      background: #1e1e30;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 255, 174, 0.2);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 60px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #00ffae;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      background-color: #2a2a3e;
+      color: #ffffff;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #00ffae;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00e699;
+    }
+
+    .loading {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #ccc;
+      display: none;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #ff5e5e;
+    }
+
+    .telegram-btn {
+      margin-top: 30px;
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #229ED9;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .telegram-btn:hover {
+      background-color: #1b8ebd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="logo" class="logo" />
+    <h1>Smart Pattern Tool</h1>
+
+    <label for="game">Choose your game:</label>
+    <select id="game">
+      <option value="aviator">Aviator</option>
+      <option value="mines">Mines</option>
+    </select>
+
+    <label for="accountId">1xBet Account ID:</label>
+    <input type="text" id="accountId" placeholder="e.g. 12345678" />
+
+    <button onclick="checkDeposit()">Check Deposit</button>
+
+    <div class="loading" id="loading">Checking deposit...</div>
+    <div class="result" id="resultText"></div>
+
+    <a href="https://t.me/JeffreyMoneyBot" target="_blank" class="telegram-btn">🔒 Get Access</a>
+  </div>
+
+  <script>
+    function checkDeposit() {
+      const accountId = document.getElementById("accountId").value.trim();
+      const resultText = document.getElementById("resultText");
+      const loading = document.getElementById("loading");
+
+      resultText.textContent = "";
+      
+      if (!accountId) {
+        resultText.textContent = "⚠️ Please enter a valid Account ID.";
+        return;
+      }
+
+      loading.style.display = "block";
+
+      setTimeout(() => {
+        loading.style.display = "none";
+        resultText.textContent = `❌ Deposit of 600 LRD not found for ID ${accountId}`;
+      }, 2000); // имитируем задержку 2 сек
+    }
+  </script>
+</body>
+</html>
