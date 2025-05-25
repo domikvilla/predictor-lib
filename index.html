@@ -2,172 +2,179 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jeffrey Program</title>
-  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0e0e1b;
-      color: #ffffff;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #121220;
+      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
-      margin: 0;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
     }
-
     .container {
-      background: #1e1e30;
+      background: #1e1e2f;
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 255, 174, 0.2);
+      max-width: 400px;
       width: 100%;
-      max-width: 420px;
       text-align: center;
+      box-shadow: 0 0 15px rgba(0, 255, 163, 0.3);
     }
-
-    .logo {
-      width: 60px;
-      margin-bottom: 15px;
-      border-radius: 8px;
+    .flag {
+      width: 40px;
     }
-
     h1 {
-      color: #00ffae;
-      font-size: 28px;
-      margin-bottom: 20px;
+      color: #00ff9c;
+      margin: 15px 0 25px;
     }
-
     label {
       display: block;
-      margin-top: 15px;
-      margin-bottom: 5px;
+      margin: 10px 0 5px;
       text-align: left;
     }
-
-    select, input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
-      background-color: #2a2a3e;
-      color: #ffffff;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 20px;
-      background-color: #00ffae;
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #00e699;
-    }
-
-    .loading {
-      margin-top: 15px;
-      font-size: 16px;
-      color: #ccc;
-      display: none;
-    }
-
-    .result {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #ff5e5e;
-    }
-
-    .telegram-btn {
-      margin-top: 30px;
-      display: inline-block;
-      padding: 12px 25px;
-      background-color: #229ED9;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-
-    .telegram-btn:hover {
-      background-color: #1b8ebd;
-    }
-
     .game-option {
       display: flex;
       align-items: center;
-      margin-top: 10px;
+      gap: 8px;
+      margin-bottom: 8px;
+      text-align: left;
     }
-
     .game-option img {
       width: 24px;
       height: 24px;
-      margin-right: 10px;
     }
-
-    .game-option label {
-      margin: 0;
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #2c2c3c;
+      color: white;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #00ff9c;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .bonus-button {
+      margin-top: 20px;
+      background: #3498db;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .timer, .online-status {
+      margin: 15px 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+    .profit-calc {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #a0ffa0;
+    }
+    .progress {
+      background-color: #333;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 15px 0;
+      display: none;
+    }
+    .progress-bar {
+      height: 12px;
+      width: 0%;
+      background: #00ff9c;
+      transition: width 0.3s;
+    }
+    .message {
+      display: none;
+      color: #ff6565;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg" alt="Liberia Flag" class="logo" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg" alt="Liberia" class="flag" />
     <h1>Jeffrey Program</h1>
 
-    <label for="game">Choose your game:</label>
+    <div class="timer" id="timer">⏳ Limited beta access ends in: <span id="countdown">10:00</span></div>
+    <div class="online-status">🔵 37 users online now</div>
+
+    <label>Choose your game:</label>
     <div class="game-option">
-      <input type="radio" id="aviator" name="game" value="aviator" checked>
-      <img src="https://rgtk.kz/wp-content/uploads/2023/01/av-2x-270x270-1.png" alt="Aviator Icon">
-      <label for="aviator">Aviator</label>
+      <label><input type="radio" name="game" value="aviator" checked><img src="https://i.imgur.com/26Kd2eh.png" alt="Aviator"> Aviator</label>
     </div>
     <div class="game-option">
-      <input type="radio" id="mines" name="game" value="mines">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4Wpu9sILOP1dBrHdqUzESvO1SbSToztgacg&s" alt="Mines Icon">
-      <label for="mines">Mines</label>
+      <label><input type="radio" name="game" value="mines"><img src="https://i.imgur.com/gPrRv2P.png" alt="Mines"> Mines</label>
     </div>
 
-    <label for="accountId">1xBet Account ID:</label>
-    <input type="text" id="accountId" placeholder="e.g. 12345678" />
+    <label for="account">1xBet Account ID:</label>
+    <input type="text" id="account" placeholder="e.g. 12345678" />
+
+    <div class="profit-calc">
+      💰 If you deposit 600 LRD, you could win: <strong>≈ 5,400 LRD</strong>
+    </div>
 
     <button onclick="checkDeposit()">Check Deposit</button>
 
-    <div class="loading" id="loading">Checking deposit...</div>
-    <div class="result" id="resultText"></div>
+    <div class="progress" id="progress">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="message" id="message">⚠️ Deposit not found. Minimum required: 600 LRD</div>
 
-    <a href="https://t.me/JeffreyMoneyBot" target="_blank" class="telegram-btn">🔒 Get Access</a>
+    <a href="https://affpa.top/L?tag=d_4386115m_53441c_&site=4386115&ad=53441&r=registration" target="_blank">
+      <button class="bonus-button">🎁 Get 1000 LRD Bonus</button>
+    </a>
   </div>
 
   <script>
+    // Countdown timer
+    let time = 600;
+    const countdown = document.getElementById('countdown');
+    setInterval(() => {
+      if (time > 0) time--;
+      const minutes = Math.floor(time / 60);
+      const seconds = time % 60;
+      countdown.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }, 1000);
+
     function checkDeposit() {
-      const accountId = document.getElementById("accountId").value.trim();
-      const resultText = document.getElementById("resultText");
-      const loading = document.getElementById("loading");
+      const progress = document.getElementById('progress');
+      const bar = document.getElementById('progress-bar');
+      const msg = document.getElementById('message');
 
-      resultText.textContent = "";
-      
-      if (!accountId) {
-        resultText.textContent = "⚠️ Please enter a valid Account ID.";
-        return;
-      }
+      progress.style.display = 'block';
+      msg.style.display = 'none';
+      bar.style.width = '0%';
 
-      loading.style.display = "block";
-
-      setTimeout(() => {
-        loading.style.display = "none";
-        resultText.textContent = `❌ Deposit of 600 LRD not found for ID ${accountId}`;
-      }, 2000);
+      let width = 0;
+      const interval = setInterval(() => {
+        if (width >= 100) {
+          clearInterval(interval);
+          msg.style.display = 'block';
+        } else {
+          width += 2;
+          bar.style.width = width + '%';
+        }
+      }, 50);
     }
   </script>
 </body>
 </html>
+
